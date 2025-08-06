@@ -3,11 +3,11 @@ import FrontFooter from '../components/FrontFooter'
 
 const MainLayout = ({ children }) => {
   return (
-    <>
+    <section id="homepagesection">
         <FrontHeader/>
-        <main>{children}</main>
+        {children}
         <FrontFooter/>
-    </>
+    </section>
   )
 }
 
