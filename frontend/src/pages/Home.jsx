@@ -1,13 +1,8 @@
 import MainLayout from '../layouts/MainLayout';
 import Business from '../components/Home/Business';
 import Milestones from '../components/Home/Milestones';
-import axios from 'axios';
 
 const Home = () => {
-  const fetchUsers = async () => {
-  const res = await axios.get('http://localhost:5000/api/users');
-    console.log(res.data);
-  };
   return (
     <MainLayout>
       <div className="section section1">
