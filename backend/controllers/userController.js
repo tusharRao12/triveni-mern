@@ -1,5 +1,10 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
+};
 
 const getUsers = async (req, res) => {
   const users = await User.find().select('-password');
@@ -49,14 +54,17 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ error: 'Invalid email or password' });
     }
 
-    // Success login
+    // Success login - return token
+    const token = generateToken(user._id);
+
     res.status(200).json({
       message: 'Login successful',
       user: {
         _id: user._id,
         name: user.name,
         email: user.email
-      }
+      },
+      token
     });
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
