@@ -1,9 +1,14 @@
-import React from 'react'
+import AdminLayout from "../../layouts/AdminLayout";
+import { useAuth } from "../../context/AuthContext"; 
 
 const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
+  const { user } = useAuth(); 
 
-export default Dashboard
+  return (
+    <AdminLayout>
+      <h2>Welcome, {user?.name}</h2>
+    </AdminLayout>
+  );
+};
+
+export default Dashboard;
